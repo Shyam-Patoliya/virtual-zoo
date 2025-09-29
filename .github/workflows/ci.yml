@@ -57,13 +57,6 @@ jobs:
           echo "Verifying monitoring pods..."
           kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=prometheus -n monitoring --timeout=120s
           echo "All pods are running!"
-  smoke-test:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create kind cluster # Must recreate the same context
-        uses: helm/kind-action@v1.10.0
-
       - name: Run smoke test
         run: |
           echo "Waiting for pods to be ready..."
@@ -73,3 +66,4 @@ jobs:
           sleep 5
           echo "Testing endpoint..."
           curl --fail http://localhost:8080
+ 
