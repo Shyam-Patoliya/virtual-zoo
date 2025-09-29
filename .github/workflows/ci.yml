@@ -23,6 +23,16 @@ jobs:
           push: true
 
           tags: shyam2210/virtual-zoo:latest
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Lint HTML files with HTMLHint
+        run: |
+          npm install -g htmlhint
+          htmlhint **/*.html
           
   deploy:
     needs: build-and-push
