@@ -12,6 +12,7 @@ jobs:
 
       - name: Lint HTML files
         run: |
+          npm install -g phantomjs-prebuilt
           npm install -g html-lint
           html-lint **/*.html
 
